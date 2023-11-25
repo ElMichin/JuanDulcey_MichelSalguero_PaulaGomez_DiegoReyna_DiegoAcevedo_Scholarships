@@ -16,18 +16,28 @@ public class User {
 	private String username;
 	private String name;
 	private String password;
+	private String country;
 	private String city;
 
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String username, String name, String password, String city) {
+	public User(String username, String name, String password, String country, String city) {
 		super();
 		this.username = username;
 		this.name = name;
 		this.password = password;
+		this.country = country;
 		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public Long getId() {

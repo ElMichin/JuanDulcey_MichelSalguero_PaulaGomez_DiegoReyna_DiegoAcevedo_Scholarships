@@ -7,55 +7,55 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.unbosque.model.Admin;
 import co.edu.unbosque.model.User;
-import co.edu.unbosque.repository.UserRepository;
+import co.edu.unbosque.repository.AdminRepository;
 
 @Service
-public class UserService implements CRUDOperation<User> {
+
+public class AdminService implements CRUDOperation<Admin>{
 
 	@Autowired
-	private UserRepository userRep;
-
-	public UserService() {
+	private AdminRepository adminRep; 
+	
+	public AdminService() {
 	}
 
 	@Override
-	public int create(User data) {
-		if (findUsernameAlreadyTaken(data)) {
+	public int create(Admin data) {
+		if (findAdminnameAlreadyTaken(data)) {
 			return 1;
 		} else {
-			userRep.save(data);
+			adminRep.save(data);
 		}
 		return 0;
 	}
 
 	@Override
-	public List<User> getAll() {
-		return userRep.findAll();
+	public List<Admin> getAll() {
+		return adminRep.findAll();
 	}
 
 	@Override
 	public int deleteByID(Long id) {
-		Optional<User> found = userRep.findById(id);
+		Optional<Admin> found = adminRep.findById(id);
 		if (found.isPresent()) {
-			userRep.delete(found.get());
+			adminRep.delete(found.get());
 			return 0;
 		}
 		return 1;
 	}
 
 	@Override
-	public int updateByID(Long id, User newData) {
-		Optional<User> found = userRep.findById(id);
-		Optional<User> newFound = userRep.findByUsername(newData.getUsername());
+	public int updateByID(Long id, Admin newData) {
+		Optional<Admin> found = adminRep.findById(id);
+		Optional<Admin> newFound = adminRep.findByUsername(newData.getUsername());
 		if (found.isPresent() && !newFound.isPresent()) {
-			User temp = found.get();
+			Admin temp = found.get();
 			temp.setUsername(newData.getUsername());
 			temp.setName(newData.getName());
 			temp.setPassword(newData.getPassword());
-			temp.setCountry(newData.getCountry());
-			temp.setCity(newData.getCity());
-			userRep.save(temp);
+			adminRep.save(temp);
 			return 0;
 		} else if (found.isPresent() && newFound.isPresent())
 			return 1;
@@ -66,26 +66,26 @@ public class UserService implements CRUDOperation<User> {
 
 	@Override
 	public long count() {
-		return userRep.count();
+		return adminRep.count();
 	}
 
 	@Override
 	public boolean exist(Long id) {
-		return userRep.existsById(id) ? true : false;
+		return adminRep.existsById(id) ? true : false;
 	}
 
-	public boolean findUsernameAlreadyTaken(User newUser) {
-		Optional<User> found = userRep.findByUsername(newUser.getUsername());
+	public boolean findAdminnameAlreadyTaken(Admin newAdmin) {
+		Optional<Admin> found = adminRep.findByUsername(newAdmin.getUsername());
 		if (found.isPresent()) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-
+	
 	public int login(String username, String password) {
 
-		ArrayList<User> newUser = (ArrayList<User>) getAll();
+		ArrayList<Admin> newUser = (ArrayList<Admin>) getAll();
 		for (int i = 0; i < newUser.size(); i++) {
 			if (newUser.get(i).getUsername().equals(username) && newUser.get(i).getPassword().equals(password)) {
 				return 0;
@@ -96,5 +96,5 @@ public class UserService implements CRUDOperation<User> {
 		}
 		return 3;
 	}
-
+	
 }
