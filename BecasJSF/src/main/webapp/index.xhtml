@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Welcome</title>
+	<link rel="stylesheet" type="text/css" href="styles/estilobecas.css"/>
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&amp;display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</h:head>
+
+<h:body>
+    <div class="header">
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">COURSE</a></li>
+                    <li><a href="#">BLOG</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="loginorsignin.html" class="hero-btn">Join Us</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+
+        <div class="text-box">
+            <h1>ScholarSync</h1>
+            <p>Welcome to ScholarSync, where we believe in unlocking the door to a brighter future through education.
+                We are dedicated to fostering academic excellence by providing impactful <br/>
+                scholarship programs that empower
+                aspiring minds to reach their full potential.
+            </p>
+            <a href="#" class="hero-btn">Visit Us to Know More</a>
+        </div>
+    </div>
+
+    <div class="course">
+        <h1>Courses We Offer</h1>
+        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="row">
+            <div class="course-col">
+                <h3>Intermediate</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pallentesque
+                    blbabaksdbksadbjdfskfsd</p>
+            </div>
+            <div class="course-col">
+                <h3>Degree</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pallentesque
+                    blbabaksdbksadbjdfskfsd</p>
+            </div>
+            <div class="course-col">
+                <h3>Post Graduation</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pallentesque
+                    blbabaksdbksadbjdfskfsd</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="campus">
+        <h1>Our Global Campus</h1>
+        <p>Lorem Ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div class="row">
+            <div class="campus-col">
+                <img src="USA.png" alt="USA"/>
+                <div class="layer">
+                    <h3>United Estates</h3>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="images/london.png" alt="London"/>
+                <div class="layer">
+                    <h3>Canada</h3>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="images/london.png" alt="China"/>
+                <div class="layer">
+                    <h3>China</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="facilities">
+        <h1>Our Facilities</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+        <div class="row">
+            <div class="facilities-col">
+                <img src="" alt="Library"/>
+                <h3>World Class library</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet..</p>
+            </div>
+            <div class="facilities-col">
+                <img src="" alt="Play Ground"/>
+                <h3>Largest Play Ground</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet..</p>
+            </div>
+            <div class="facilities-col">
+                <img src="" alt="Food"/>
+                <h3>Tasty and Healthy Food</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquet..</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonials">
+        <h1>What Our Student Says</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+        <div class="row">
+            <div class="testimonial-col">
+                <img src="" alt="Christine Berkley"/>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3>Christine Berkley</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+            </div>
+            <div class="testimonial-col">
+                <img src="" alt="David Byer"/>
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3>David Byer</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta">
+        <h1>Enroll for our various online courses<br/>anywhere from the world</h1>
+        <a href="#" class="hero-btn">CONTACT US</a>
+    </div>
+
+    <script>
+        function showMenu() {
+            var navLinks = document.getElementById("navLinks");
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            var navLinks = document.getElementById("navLinks");
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</h:body>
+</html>
