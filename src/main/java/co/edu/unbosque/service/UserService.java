@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.unbosque.model.Country;
 import co.edu.unbosque.model.User;
 import co.edu.unbosque.repository.UserRepository;
 
@@ -104,11 +103,12 @@ public class UserService implements CRUDOperation<User> {
 				return 0;
 			} else if (!newUser.get(i).getUsername().equals(username))
 				return 1;
-			else if (!newUser.get(i).getUsername().equals(password))
+			else if (!newUser.get(i).getPassword().equals(password))
 				return 2;
+			else if (newUser.get(i).getUsername().equals("admin") && newUser.get(i).getPassword().equals("123"))
+				return 3;
 		}
-		return 3;
+		return 4;
 	}
-	
 
 }

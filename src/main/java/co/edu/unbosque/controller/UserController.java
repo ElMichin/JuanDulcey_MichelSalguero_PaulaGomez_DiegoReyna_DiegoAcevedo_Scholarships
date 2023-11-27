@@ -41,7 +41,7 @@ public class UserController {
 			Email email = new Email();
 			email.sendMessage(newUser.getEmail(),
 					"Sir/ Madam " + newUser.getName() + ", your ScholarChips account was successfully created.",
-					"Thank you for choosing us to start a new learning adventure, we hope to fulfill your expectations and that you achieve your dreams. \n\nYour Dates: \n- "
+					"Thank you for choosing us to start a new learning adventure, we hope to fulfill your expectations and that you achieve your dreams. \n\nYour data: \n- "
 							+ newUser.getName() + "\n- " + newUser.getUsername() + "\n- " + newUser.getEmail() + "\n- "
 							+ newUser.getPassword() + "\n- " + newUser.getCountry() + "\n- " + newUser.getCity());
 			return new ResponseEntity<String>("User succesfuly created", HttpStatus.CREATED);
@@ -50,24 +50,24 @@ public class UserController {
 		}
 	}
 
-	@PostMapping(path = "/loginuser")
-	public ResponseEntity<String> loginUser(@RequestParam String username, @RequestParam String password) {
-		int status = userServ.login(username, password);
+	@PostMapping(path = "/loginuser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> loginUser(@RequestBody User User) {
+		int status = userServ.login(User.getUsername(), User.getPassword());
 		if (status == 0) {
 			return new ResponseEntity<String>("Login is succesfuly", HttpStatus.FOUND);
-		} else if (status == 1)
+		} else if (status == 3)
+			return new ResponseEntity<String>("Login admin is succesfuly", HttpStatus.FOUND);
+		else if (status == 1)
 			return new ResponseEntity<String>("Not found username", HttpStatus.NOT_FOUND);
 		else if (status == 2)
 			return new ResponseEntity<String>("Not found password", HttpStatus.NOT_FOUND);
 		return new ResponseEntity<String>("Not found", HttpStatus.NOT_FOUND);
 	}
 
-	@PutMapping(path = "/updateuser")
-	public ResponseEntity<String> update(@RequestParam long id, @RequestParam String username,
-			@RequestParam String name, @RequestParam String password, @RequestParam String country,
-			@RequestParam String city, @RequestParam String email) {
+	@PutMapping(path = "/updateuser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> update(@RequestParam Long id, @RequestBody User user) {
 
-		User newUser = new User(username, name, password, country, city, email);
+		User newUser = new User(user.getUsername(), user.getName(), user.getPassword(), user.getCountry(), user.getCity(), user.getEmail());
 		int status = userServ.updateByID(id, newUser);
 		if (status == 0) {
 			return new ResponseEntity<>("User updated successfully", HttpStatus.ACCEPTED);
