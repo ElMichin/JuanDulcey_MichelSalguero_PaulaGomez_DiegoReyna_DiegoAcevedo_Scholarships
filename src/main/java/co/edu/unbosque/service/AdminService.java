@@ -13,11 +13,11 @@ import co.edu.unbosque.repository.AdminRepository;
 
 @Service
 
-public class AdminService implements CRUDOperation<Admin>{
+public class AdminService implements CRUDOperation<Admin> {
 
 	@Autowired
-	private AdminRepository adminRep; 
-	
+	private AdminRepository adminRep;
+
 	public AdminService() {
 	}
 
@@ -44,6 +44,17 @@ public class AdminService implements CRUDOperation<Admin>{
 			return 0;
 		}
 		return 1;
+	}
+
+	@Override
+	public int deleteByUsername(String username) {
+		Optional<Admin> found = adminRep.findByUsername(username);
+		if (found.isPresent()) {
+			adminRep.delete(found.get());
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 
 	@Override
@@ -82,7 +93,7 @@ public class AdminService implements CRUDOperation<Admin>{
 			return false;
 		}
 	}
-	
+
 	public int login(String username, String password) {
 
 		ArrayList<Admin> newUser = (ArrayList<Admin>) getAll();
@@ -96,5 +107,5 @@ public class AdminService implements CRUDOperation<Admin>{
 		}
 		return 3;
 	}
-	
+
 }

@@ -10,6 +10,8 @@ public interface CRUDOperation<T> {
 	
 	public int deleteByID(Long id);
 	
+	public int deleteByUsername(String username); 
+	
 	public int updateByID(Long id, T newData);
 	
 	public long count();

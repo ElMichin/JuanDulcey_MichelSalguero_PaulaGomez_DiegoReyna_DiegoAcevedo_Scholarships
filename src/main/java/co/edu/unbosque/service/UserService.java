@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.edu.unbosque.model.Country;
 import co.edu.unbosque.model.User;
 import co.edu.unbosque.repository.UserRepository;
 
@@ -45,6 +46,17 @@ public class UserService implements CRUDOperation<User> {
 	}
 
 	@Override
+	public int deleteByUsername(String username) {
+		Optional<User> found = userRep.findByUsername(username);
+		if (found.isPresent()) {
+			userRep.delete(found.get());
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
+	@Override
 	public int updateByID(Long id, User newData) {
 		Optional<User> found = userRep.findById(id);
 		Optional<User> newFound = userRep.findByUsername(newData.getUsername());
@@ -55,6 +67,7 @@ public class UserService implements CRUDOperation<User> {
 			temp.setPassword(newData.getPassword());
 			temp.setCountry(newData.getCountry());
 			temp.setCity(newData.getCity());
+			temp.setEmail(newData.getEmail());
 			userRep.save(temp);
 			return 0;
 		} else if (found.isPresent() && newFound.isPresent())
@@ -96,5 +109,6 @@ public class UserService implements CRUDOperation<User> {
 		}
 		return 3;
 	}
+	
 
 }
